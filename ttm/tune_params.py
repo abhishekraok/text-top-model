@@ -1,16 +1,16 @@
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 import pprint
 
-from benchmarks import benchmark_with_early_stopping, cache
-from keras_models.mlp import MLP
-from keras_models.lstm import LSTMClassifier
-from keras_models.blstm_2dcnn import BLSTM2DCNN
-from keras_models.ykim_cnn import YKimCNN
+from .benchmarks import benchmark_with_early_stopping, cache
+from .keras_models.mlp import MLP
+from .keras_models.lstm import LSTMClassifier
+from .keras_models.blstm_2dcnn import BLSTM2DCNN
+from .keras_models.ykim_cnn import YKimCNN
 
 def fix_ints(d):
     return {
         k: int(v) if (isinstance(v, float) and int(v) == v) else v
-        for k, v in d.items()
+        for k, v in list(d.items())
     }
 
 
@@ -61,7 +61,7 @@ if __name__ == '__main__':
             'max_seq_len': 50
         }, max_evals=100)
 
-    print '\n\nYKimCNN trainable embedding'
+    print('\n\nYKimCNN trainable embedding')
     pp.pprint(trials.best_trial)
 
     trials = hyperopt_me_like_one_of_your_french_girls(
@@ -83,7 +83,7 @@ if __name__ == '__main__':
             'max_seq_len': 50
         }, max_evals=100)
 
-    print '\n\nYKimCNN glove embedding'
+    print('\n\nYKimCNN glove embedding')
     pp.pprint(trials.best_trial)
 
 
@@ -100,7 +100,7 @@ if __name__ == '__main__':
             'batch_size': 64
         }, max_evals=100)
 
-    print '\n\nBLSTM with pretrained embedding'
+    print('\n\nBLSTM with pretrained embedding')
     pp.pprint(trials.best_trial)
 
 
@@ -115,7 +115,7 @@ if __name__ == '__main__':
             'embedding_dim': hp.quniform('embedding_dim', 2, 40, 1)
         }, max_evals=100)
 
-    print '\n\nBLSTM2DCNN with trainable embedding'
+    print('\n\nBLSTM2DCNN with trainable embedding')
     pp.pprint(trials.best_trial)
 
 
@@ -128,7 +128,7 @@ if __name__ == '__main__':
             'max_vocab_size': hp.quniform('max_vocab_size', 4000, 25000, 1000)
         }, max_evals=200)
 
-    print '\n\nMLP'
+    print('\n\nMLP')
     pp.pprint(trials.best_trial)
 
 
@@ -144,7 +144,7 @@ if __name__ == '__main__':
             'embedding_dim': hp.quniform('embedding_dim', 2, 40, 1)
         }, max_evals=100)
 
-    print '\n\nLSTM'
+    print('\n\nLSTM')
     pp.pprint(trials.best_trial)
 
 
@@ -162,7 +162,7 @@ if __name__ == '__main__':
             'batch_size': 64
         }, max_evals=100)
 
-    print '\n\nBLSTM'
+    print('\n\nBLSTM')
     pp.pprint(trials.best_trial)
 
     trials = hyperopt_me_like_one_of_your_french_girls(
@@ -179,7 +179,7 @@ if __name__ == '__main__':
             'batch_size': 64
         }, max_evals=100)
 
-    print '\n\nBLSTM with pretrained embedding'
+    print('\n\nBLSTM with pretrained embedding')
     pp.pprint(trials.best_trial)
 
     trials = hyperopt_me_like_one_of_your_french_girls(
@@ -195,5 +195,5 @@ if __name__ == '__main__':
             'batch_size': 64
         }, max_evals=100)
 
-    print '\n\nLSTM with pretrained embedding'
+    print('\n\nLSTM with pretrained embedding')
     pp.pprint(trials.best_trial)

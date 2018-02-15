@@ -1,6 +1,6 @@
 from keras.layers import Dense, LSTM, Bidirectional
 
-from keras_text_classifier import KerasTextClassifier
+from .keras_text_classifier import KerasTextClassifier
 
 
 class LSTMClassifier(KerasTextClassifier):

@@ -6,7 +6,7 @@ from keras.layers import Embedding
 from keras.models import Model
 from keras.callbacks import EarlyStopping
 
-from utils import get_embedding_matrix, get_embedding_dim
+from .utils import get_embedding_matrix, get_embedding_dim
 
 
 class KerasTextClassifier(object):
@@ -140,7 +140,7 @@ class KerasTextClassifier(object):
         class_name = str(self.__class__).split('.')[-1][:-2]
         param_string = ", ".join(
             '%s=%s' % (k, v)
-            for k, v in self.get_params().items()
+            for k, v in list(self.get_params().items())
             if k not in ['vocab', 'vocab_size', 'class_count']
         )
         return "%s(%s)" % (class_name, param_string)

@@ -1,6 +1,6 @@
 from keras.layers import Dense, LSTM, Bidirectional, Conv2D, Dropout, MaxPool2D, \
     Reshape, Flatten
-from keras_text_classifier import KerasTextClassifier
+from .keras_text_classifier import KerasTextClassifier
 
 
 class BLSTM2DCNN(KerasTextClassifier):

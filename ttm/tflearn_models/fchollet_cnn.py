@@ -1,7 +1,7 @@
 from tflearn.layers.core import dropout, fully_connected
 from tflearn.layers.conv import conv_1d, max_pool_1d
 
-from tflearn_text_classifier import TFlearnTextClassifier
+from .tflearn_text_classifier import TFlearnTextClassifier
 
 
 class FCholletCNN(TFlearnTextClassifier):

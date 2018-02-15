@@ -13,7 +13,7 @@ class SklearnClassifierWrapper(object):
         """
         vectorizer_class = TfidfVectorizer if tfidf else CountVectorizer
         vectorizer = vectorizer_class(
-                preprocessor=lambda x: map(str, x),
+                preprocessor=lambda x: list(map(str, x)),
                 tokenizer=lambda x: x,
                 ngram_range=(1, ngram_n))
 

@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 
-from sklearn_models import MultNB, BernNB, SVM
-from keras_models.fchollet_cnn import FCholletCNN
-from keras_models.mlp import MLP
-from benchmarks import benchmark
+from .sklearn_models import MultNB, BernNB, SVM
+from .keras_models.fchollet_cnn import FCholletCNN
+from .keras_models.mlp import MLP
+from .benchmarks import benchmark
 
 datasets = [
     '20ng-all-terms.txt',
@@ -48,13 +48,13 @@ results_path = 'document_results.csv'
 if __name__ == '__main__':
     records = []
     for data_path in datasets:
-        print
-        print data_path
+        print()
+        print(data_path)
 
         for model_class, params, model_name in models:
             scores, times = benchmark(model_class, data_path, params, 10)
             model_str = str(model_class(**params))
-            print '%.3f' % np.mean(scores), model_str
+            print('%.3f' % np.mean(scores), model_str)
             for score, time in zip(scores, times):
                 records.append({
                     'model': model_str,

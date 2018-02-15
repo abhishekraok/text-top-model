@@ -3,7 +3,7 @@ from tflearn.layers import dropout, fully_connected, flatten
 from tflearn.layers.conv import conv_1d, max_pool_1d, global_max_pool
 from tflearn.layers.merge_ops import merge
 
-from tflearn_text_classifier import TFlearnTextClassifier
+from .tflearn_text_classifier import TFlearnTextClassifier
 
 
 class YKimCNN(TFlearnTextClassifier):

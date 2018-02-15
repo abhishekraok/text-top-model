@@ -1,5 +1,5 @@
 import numpy as np
-from prepare_data import cache
+from .prepare_data import cache
 from sklearn.model_selection import cross_val_predict
 
 

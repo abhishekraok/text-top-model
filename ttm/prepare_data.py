@@ -20,7 +20,7 @@ def read_dataset(path):
             X.append(text.split())
             y.append(label)
     X, y = np.array(X), np.array(y)
-    print "total examples %s" % len(y)
+    print("total examples %s" % len(y))
     return X, y
 
 
@@ -30,7 +30,7 @@ def prepare_dataset(path):
     label_encoder = LabelEncoder()
     labels = label_encoder.fit_transform(y)
     word_counts = Counter(w for text in X for w in text)
-    vocab = [''] + [w for (w, _) in sorted(word_counts.items(), key=lambda (_, c): -c)]
+    vocab = [''] + [w for (w, _) in sorted(list(word_counts.items()), key=lambda __c: -__c[1])]
     word2ind = {w: i for i, w in enumerate(vocab)}
     X = np.array([[word2ind[w] for w in tokens] for tokens in X])
     return X, labels, vocab, label_encoder

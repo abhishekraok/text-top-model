@@ -3,13 +3,13 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from xgboost import XGBClassifier
 
-from sklearn_models import MultNB, SVM
-from stacking_classifier import StackingTextClassifier
-from keras_models.blstm_2dcnn import BLSTM2DCNN
-from keras_models.lstm import LSTMClassifier
-from keras_models.ykim_cnn import YKimCNN
-from keras_models.mlp import MLP
-from benchmarks import benchmark
+from .sklearn_models import MultNB, SVM
+from .stacking_classifier import StackingTextClassifier
+from .keras_models.blstm_2dcnn import BLSTM2DCNN
+from .keras_models.lstm import LSTMClassifier
+from .keras_models.ykim_cnn import YKimCNN
+from .keras_models.mlp import MLP
+from .benchmarks import benchmark
 
 datasets = [
     '../data/polarity.txt',
@@ -124,7 +124,7 @@ logreg_stacker = (StackingTextClassifier, {
         (m, params)
         for m, params, _ in models[:-3]
     ] + [
-        (m, dict(params.items() + [('probability', True)]))
+        (m, dict(list(params.items()) + [('probability', True)]))
         for m, params, _ in models[-3:]
     ],
     'use_proba': True,
@@ -146,13 +146,13 @@ results_path = 'sentence_results.csv'
 if __name__ == '__main__':
     records = []
     for data_path in datasets:
-        print
-        print "rrrddd", data_path
+        print()
+        print("rrrddd", data_path)
 
         for model_class, params, model_name in models:
             scores, times = benchmark(model_class, data_path, params, 5)
             model_str = str(model_class(**params))
-            print 'rrr %.3f' % np.mean(scores), model_str
+            print('rrr %.3f' % np.mean(scores), model_str)
             for score, time in zip(scores, times):
                 records.append({
                     'model': model_str,

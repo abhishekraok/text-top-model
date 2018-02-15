@@ -2,7 +2,7 @@ from tflearn.layers.recurrent import lstm
 from tflearn.layers.core import fully_connected
 
 
-from tflearn_text_classifier import TFlearnTextClassifier
+from .tflearn_text_classifier import TFlearnTextClassifier
 
 
 class LSTMClassifier(TFlearnTextClassifier):

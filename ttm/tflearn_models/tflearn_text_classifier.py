@@ -6,7 +6,7 @@ from tflearn.layers import embedding
 from tflearn.layers.core import input_data, fully_connected
 from tflearn.layers.estimator import regression
 
-from utils import get_embedding_matrix, get_embedding_dim
+from .utils import get_embedding_matrix, get_embedding_dim
 
 
 class EarlyStoppingCallback(tflearn.callbacks.Callback):
@@ -184,7 +184,7 @@ class TFlearnTextClassifier(object):
         class_name = str(self.__class__).split('.')[-1][:-2]
         param_string = ", ".join(
             '%s=%s' % (k, v)
-            for k, v in self.get_params().items()
+            for k, v in list(self.get_params().items())
             if k not in ['vocab', 'vocab_size', 'class_count']
         )
         return "%s(%s)" % (class_name, param_string)

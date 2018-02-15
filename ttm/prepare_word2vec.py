@@ -26,13 +26,13 @@ def make_word2vec(path, dim):
         sentences = [line.split('\t')[1].split() for line in f]
 
     model = Word2Vec(sentences, size=dim, window=5, min_count=5, workers=4)
-    w2v = dict(zip(model.wv.index2word, model.wv.syn0))
+    w2v = dict(list(zip(model.wv.index2word, model.wv.syn0)))
     return w2v
 
 
 def save_word2vec(w2v, out_path):
     with open(out_path, 'wb') as f:
-        for word, vec in w2v.items():
+        for word, vec in list(w2v.items()):
             f.write(word + " ")
             f.write(" ".join("%.5f" % x for x in vec))
             f.write('\n')
@@ -40,7 +40,7 @@ def save_word2vec(w2v, out_path):
 def main():
     for dataset in datasets:
         for dim in dimensionalities:
-            print 'doing', dataset, dim
+            print('doing', dataset, dim)
             path = '../data/%s.txt' % dataset
             out_path = '../data/word2vec/%s_%sd.txt' % (dataset, dim)
             w2v = make_word2vec(path, dim)

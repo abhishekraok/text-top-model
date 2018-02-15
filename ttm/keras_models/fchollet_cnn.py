@@ -1,7 +1,7 @@
 from keras.layers import Dense, Flatten, Dropout
 from keras.layers import Conv1D, MaxPooling1D
 
-from keras_text_classifier import KerasTextClassifier
+from .keras_text_classifier import KerasTextClassifier
 
 
 class FCholletCNN(KerasTextClassifier):
