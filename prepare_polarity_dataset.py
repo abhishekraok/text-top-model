@@ -1,5 +1,4 @@
 import string
-from unidecode import unidecode
 
 neg_path = 'data/polarity/rt-polarity.neg'
 pos_path = 'data/polarity/rt-polarity.pos'
@@ -11,17 +10,17 @@ def is_punctuation(s):
 
 
 def fix_line(line):
-    line = unidecode(line.decode('latin-1'))
+    line = line.decode('latin-1')
     return " ".join(w for w in line.split() if not is_punctuation(w))
 
 
 def main():
     with open(neg_path, 'rb') as neg, open(pos_path, 'rb') as pos, open(out_path, 'wb') as out:
         for line in neg:
-            out.write(('NEG\t' + fix_line(line) + '\n').encode())
+            out.write(('NEG\t' + fix_line(line) + '\n').encode('latin-1'))
 
         for line in pos:
-            out.write(('POS\t' + fix_line(line) + '\n').encode())
+            out.write(('POS\t' + fix_line(line) + '\n').encode('latin-1'))
 
 
 if __name__ == '__main__':
