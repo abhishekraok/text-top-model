@@ -6,7 +6,7 @@ out_path = "data/subjectivity_10k.txt"
 
 
 def is_punctuation(s):
-    return s.translate(None, string.punctuation) == ""
+    return s.translate({ord(c): None for c in string.punctuation})
 
 
 def fix_line(line):

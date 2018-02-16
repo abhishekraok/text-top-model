@@ -1,12 +1,8 @@
-import string
+from prepare_subjectivity_dataset import is_punctuation
 
 neg_path = 'data/polarity/rt-polarity.neg'
 pos_path = 'data/polarity/rt-polarity.pos'
 out_path = 'data/polarity.txt'
-
-
-def is_punctuation(s):
-    return s.translate(None, string.punctuation) == ""
 
 
 def fix_line(line):
