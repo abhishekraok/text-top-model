@@ -1,7 +1,7 @@
 import numpy as np
 from time import time
 
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.cross_validation import train_test_split
 from .prepare_data import prepare_dataset, cache
 

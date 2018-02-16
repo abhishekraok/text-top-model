@@ -18,10 +18,10 @@ def fix_line(line):
 def main():
     with open(neg_path, 'rb') as neg, open(pos_path, 'rb') as pos, open(out_path, 'wb') as out:
         for line in neg:
-            out.write('NEG\t' + fix_line(line) + '\n')
+            out.write(('NEG\t' + fix_line(line) + '\n').encode())
 
         for line in pos:
-            out.write('POS\t' + fix_line(line) + '\n')
+            out.write(('POS\t' + fix_line(line) + '\n').encode())
 
 
 if __name__ == '__main__':

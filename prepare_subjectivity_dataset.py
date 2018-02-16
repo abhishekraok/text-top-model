@@ -21,10 +21,10 @@ def get_fixed_lines(path):
 def main():
     with open(out_path, 'wb') as out:
         for line in get_fixed_lines(subj_path):
-            out.write('SUB\t' + line + '\n')
+            out.write(('SUB\t' + line + '\n').encode())
 
         for line in get_fixed_lines(obj_path):
-            out.write('OBJ\t' + line + '\n')
+            out.write(('OBJ\t' + line + '\n').encode())
 
 
 if __name__ == '__main__':
